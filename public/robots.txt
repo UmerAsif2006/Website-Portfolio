@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://executron-ai-automations.vercel.app/sitemap.xml

@@ -1,0 +1,291 @@
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  padding: 1px;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-spectrum);
+  box-shadow: var(--shadow-float);
+}
+
+/* Soft glow that slowly breathes behind the window. */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 12% 6% -6%;
+  z-index: -1;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-accent);
+  filter: blur(48px);
+  opacity: 0.22;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.02);
+  }
+}
+
+.window {
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - 1px);
+  background: var(--color-surface);
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-orange-bright);
+}
+
+.dots span:nth-child(2) {
+  background: var(--color-yellow-bright);
+}
+
+.dots span:nth-child(3) {
+  background: var(--color-cyan-bright);
+}
+
+.file {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-success-soft);
+  color: var(--color-success);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.canvas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 0;
+  min-height: 132px;
+  padding: var(--space-3) 18px;
+  background-image: radial-gradient(var(--color-border-strong) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.node {
+  padding: 7px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+  transition:
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.reached {
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-cyan-bright) 55%, transparent);
+}
+
+.hot.reached {
+  background: var(--color-orange-soft);
+  border-color: color-mix(in srgb, var(--color-orange-bright) 60%, transparent);
+  color: var(--color-orange);
+}
+
+.head {
+  box-shadow: var(--glow-cyan);
+}
+
+.hot.head {
+  box-shadow: var(--glow-warm);
+}
+
+.wire {
+  position: relative;
+  width: 26px;
+  height: 2px;
+  margin-inline: 4px;
+  background-image: linear-gradient(90deg, var(--color-border-strong) 50%, transparent 50%);
+  background-size: 6px 2px;
+}
+
+.wireOn {
+  background-image: linear-gradient(90deg, var(--color-cyan-bright) 50%, transparent 50%);
+}
+
+.spark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan-bright);
+  box-shadow: 0 0 8px var(--color-cyan-bright);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.wireOn .spark {
+  animation: travel 1.2s linear infinite;
+}
+
+@keyframes travel {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.code {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 176px;
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  overflow-x: auto;
+}
+
+.line {
+  white-space: pre;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 280ms var(--ease-out),
+    transform 280ms var(--ease-out);
+}
+
+.lineOn {
+  opacity: 1;
+  transform: none;
+}
+
+.brace,
+.punct {
+  color: var(--color-code-text);
+}
+
+.key {
+  color: var(--color-code-key);
+}
+
+.string {
+  color: var(--color-code-string);
+}
+
+.literal {
+  color: var(--color-code-literal);
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  margin-top: 4px;
+  background: var(--color-code-key);
+  animation: blink 1s steps(1) infinite;
+}
+
+.status {
+  display: flex;
+  gap: var(--space-2);
+  padding: 10px 18px;
+  background: var(--color-code-bg);
+  border-top: 1px solid var(--color-code-line);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--color-code-muted);
+  text-transform: uppercase;
+}
+
+.status span:first-child {
+  margin-right: auto;
+}
+
+.running {
+  color: var(--color-code-literal);
+}
+
+.ok {
+  color: var(--color-code-string);
+}
+
+@media (max-width: 480px) {
+  .canvas {
+    padding-inline: 12px;
+  }
+
+  .node {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  .wire {
+    width: 14px;
+  }
+}

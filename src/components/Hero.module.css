@@ -1,0 +1,244 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--nav-height);
+  padding-bottom: var(--space-10);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 60vw;
+  height: 60vw;
+  max-width: 820px;
+  max-height: 820px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-violet) 16%, transparent), transparent 65%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -25% -15%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 720px;
+  max-height: 720px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-cyan-bright) 10%, transparent), transparent 65%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero-fade);
+  pointer-events: none;
+}
+
+.layout {
+  position: relative;
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+  padding-top: var(--space-6);
+}
+
+@media (min-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: var(--space-6);
+    max-width: 1320px;
+  }
+}
+
+.visual {
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.float {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 6px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-scrim);
+  backdrop-filter: blur(8px);
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  box-shadow: 0 0 10px var(--color-cyan);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.title {
+  /* Always one line: the size follows the available width. */
+  font-size: clamp(1.7rem, calc((100vw - 48px) / 9.6), 4.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+@media (min-width: 1100px) {
+  .title {
+    font-size: clamp(2.8rem, 4.4vw, 4.3rem);
+  }
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(1.15rem, 2.4vw, 1.7rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.taglineSub {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+  color: var(--color-cyan);
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.rotating {
+  margin-top: calc(var(--space-1) * -1);
+}
+
+.shimmer {
+  background: var(--gradient-shimmer);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 9s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.tagline::before {
+  content: "> ";
+  color: var(--color-cyan);
+}
+
+.value {
+  max-width: 640px;
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+}
+
+.valueLine {
+  display: block;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-3);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-half);
+  color: var(--color-muted);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.scroll:hover {
+  color: var(--color-cyan);
+}
+
+.scrollText {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.scrollIcon {
+  display: inline-flex;
+}
+
+@media (max-width: 640px) {
+  .ctas {
+    width: 100%;
+  }
+
+  .ctas a {
+    flex: 1 1 100%;
+  }
+
+  .scroll {
+    display: none;
+  }
+}
+
+.hero:focus {
+  outline: none;
+}
+
+@media (max-width: 767px) {
+  .valueLine {
+    display: inline;
+  }
+
+  .valueLine + .valueLine::before {
+    content: " ";
+  }
+}

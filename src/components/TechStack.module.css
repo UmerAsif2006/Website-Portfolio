@@ -1,0 +1,124 @@
+.section {
+  background: var(--gradient-section-glow);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-violet) 40%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-accent-soft);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-cyan);
+}
+
+.title {
+  font-size: var(--text-lg);
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.chip {
+  white-space: normal;
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out);
+}
+
+.chip:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+.chipIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+  color: var(--color-cyan);
+}
+
+.card:nth-child(3n + 2) .chipIcon {
+  color: var(--color-orange);
+}
+
+.card:nth-child(3n + 3) .chipIcon {
+  color: var(--color-yellow);
+}
+
+.card:nth-child(3n + 2) .icon {
+  background: var(--color-orange-soft);
+  border-color: color-mix(in srgb, var(--color-orange-bright) 40%, transparent);
+  color: var(--color-orange);
+}
+
+.card:nth-child(3n + 2):hover {
+  border-color: color-mix(in srgb, var(--color-orange-bright) 45%, transparent);
+}
+
+.card:nth-child(3n + 2) .chip:hover {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.card:nth-child(3n + 3) .icon {
+  background: var(--color-yellow-soft);
+  border-color: color-mix(in srgb, var(--color-yellow-bright) 40%, transparent);
+  color: var(--color-yellow);
+}
+
+.card:nth-child(3n + 3):hover {
+  border-color: color-mix(in srgb, var(--color-yellow-bright) 45%, transparent);
+}
+
+.card:nth-child(3n + 3) .chip:hover {
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+}

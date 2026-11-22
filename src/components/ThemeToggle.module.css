@@ -1,0 +1,15 @@
+.toggle {
+  overflow: hidden;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(8px);
+}
+
+.toggle:hover:not(:disabled) {
+  color: var(--color-violet);
+  border-color: var(--color-violet);
+  box-shadow: var(--glow-violet);
+}
+
+.icon {
+  display: inline-flex;
+}

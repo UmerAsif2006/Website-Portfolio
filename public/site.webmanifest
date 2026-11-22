@@ -1,0 +1,12 @@
+{
+  "name": "Executron AI Automations",
+  "short_name": "Executron",
+  "description": "AI chatbots, voice agents and n8n workflow automations by Muhammad Umer Asif.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6FB",
+  "theme_color": "#F4F6FB",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

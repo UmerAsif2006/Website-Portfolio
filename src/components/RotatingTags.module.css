@@ -1,0 +1,32 @@
+.wrap {
+  margin: 0;
+}
+
+.stage {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 1.6em;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.marker {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--gradient-warm);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-orange-bright) 55%, transparent);
+}
+
+.tag {
+  display: inline-block;
+  background: var(--gradient-warm-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
